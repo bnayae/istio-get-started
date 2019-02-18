@@ -9,14 +9,15 @@ credit: https://medium.com/google-cloud/istio-routing-basics-14feab3c040e
 
 ## Dockerize (from project root folder)
 
-cd src/ping  
+cd src/ping
 **docker image build -t bnaya/ping:v1 .**
 
 cd src/pong  
 **docker image build -t bnaya/pong:v1 .**
 
-cd src/echo  
+cd src/echo/{version}  
 **docker image build -t bnaya/echo:v1 .**
+**docker image build -t bnaya/echo:v2 .**
 
 run attached  
 **docker run -p 7777:80 bnaya/ping:v1**  

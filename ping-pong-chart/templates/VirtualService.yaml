@@ -38,7 +38,7 @@ spec:
     rewrite:
       uri: /
     route:
-    - destination:
+    - destination: # Destination indicates the network addressable service to which the request/connection will be sent after processing a routing rule.
         host: echo-svc
         port:
           number: 80

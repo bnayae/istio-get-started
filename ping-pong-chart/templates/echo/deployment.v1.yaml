@@ -18,14 +18,13 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: echo
-#  name: echo-v1-pod # todo
+  name: echo-v1-pod
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: echo
+        app: echo.pod
         version: v1
     spec:
       containers:

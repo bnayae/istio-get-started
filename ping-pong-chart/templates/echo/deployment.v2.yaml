@@ -13,17 +13,23 @@
 #   limitations under the License.
 
 ##################################################################################################
-# echo service
+# echo Pod
 ##################################################################################################
-apiVersion: v1
-kind: Service
+apiVersion: extensions/v1beta1
+kind: Deployment
 metadata:
-  name: echo-svc
-  labels:
-    app: echo.svc
+  name: echo-v2-pod
 spec:
-  ports:
-  - port: 80
-    name: http
-  selector:
-    app: echo.pod
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: echo.pod
+        version: v2
+    spec:
+      containers:
+      - name: echo-container
+        image: bnaya/echo:v2
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
