@@ -28,6 +28,7 @@ spec:
   - "*" # target-service
   gateways:
   - ping-pong-gateway
+#  - mesh # internal communication
   http:
 ######################################################################################
 # echo
@@ -39,32 +40,54 @@ spec:
       uri: /
     route:
     - destination: # Destination indicates the network addressable service to which the request/connection will be sent after processing a routing rule.
-        host: echo-svc
+        host: echo-service
         port:
           number: 80
-    fault: # https://istio.io/docs/tasks/traffic-management/fault-injection/
-      delay:
-        percent: 50
-        fixedDelay: 3s
-      abort:
-        percent: 20
-        httpStatus: 404
-    retries:
-      attempts: 2
-      perTryTimeout: 1s
+        # defined in the destination rule
+        subset: version-1 
+      weight: 90
+    - destination:
+        host: echo-service
+        port:
+          number: 80
+        subset: version-2 # defined in the destination rule
+      weight: 10
+
   - match:
     - uri:
-        exact: /echo/health
-    - uri:
-        exact: /echo/ready
-    - uri:
-        exact: /echo
-    route:
-    - destination:
-        host: echo-svc
+        prefix: /api/v2/echo
+    rewrite:
+      uri: /
+    route: 
+    - destination: 
+        host: echo-service
         port:
           number: 80
-    timeout: 10s
+        subset: version-2 # defined in the destination rule
+
+#    fault: # https://istio.io/docs/tasks/traffic-management/fault-injection/
+#      delay:
+#        percent: 50
+#        fixedDelay: 3s
+#      abort:
+#        percent: 20
+#        httpStatus: 404
+#    retries:
+#      attempts: 2
+#      perTryTimeout: 1s
+#  - match:
+#    - uri:
+#        exact: /echo/health
+#    - uri:
+#        exact: /echo/ready
+#    - uri:
+#        exact: /echo
+#    route:
+#    - destination:
+#        host: echo-service
+#        port:
+#          number: 80
+#    timeout: 10s
 ######################################################################################
 # ping
 ######################################################################################
@@ -75,9 +98,10 @@ spec:
       uri: /health
     route:
     - destination:
-        host: ping-svc
+        host: ping-service
         port:
           number: 80
+          
   - match:
     - uri:
         exact: /api/v1/ping/ready
@@ -85,9 +109,10 @@ spec:
       uri: /ready
     route:
     - destination:
-        host: ping-svc
+        host: ping-service
         port:
           number: 80
+
   - match:
     - uri:
         prefix: /api/v1/ping
@@ -95,7 +120,7 @@ spec:
       uri: /
     route:
     - destination:
-        host: ping-svc
+        host: ping-service
         port:
           number: 80
     timeout: 2s
@@ -109,9 +134,10 @@ spec:
       uri: /health
     route:
     - destination:
-        host: pong-svc
+        host: pong-service
         port:
           number: 80
+
   - match:
     - uri:
         exact: /api/v1/pong/ready
@@ -119,9 +145,10 @@ spec:
       uri: /ready
     route:
     - destination:
-        host: pong-svc
+        host: pong-service
         port:
           number: 80
+
   - match:
     - uri:
         prefix: /api/v1/pong
@@ -129,6 +156,6 @@ spec:
       uri: /
     route:
     - destination:
-        host: pong-svc
+        host: pong-service
         port:
           number: 80

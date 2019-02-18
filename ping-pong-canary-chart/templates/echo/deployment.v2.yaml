@@ -13,26 +13,27 @@
 #   limitations under the License.
 
 ##################################################################################################
-# Ping Pod
+# echo Pod
 ##################################################################################################
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: ping-v1-pod
+  name: echo-v2-pod
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: ping
-        version: v1
+        app: echo.pod
+        version: v2
     spec:
       containers:
-      - name: ping-container
-        image: bnaya/ping:v1
+      - name: echo-container
+        image: bnaya/echo:v2
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
-        env:
-        - name: TARGET_URL
-          value: "http://pong-service"
+        resources:
+          requests:
+            cpu: 0.1
+            memory: 200

@@ -1,6 +1,7 @@
 # Notes
 
-credit: https://medium.com/google-cloud/istio-routing-basics-14feab3c040e
+[istio-routing-basics](https://medium.com/google-cloud/istio-routing-basics-14feab3c040e)
+[canary-deployments](https://kublr.com/blog/hands-on-canary-deployments-with-istio-and-kubernetes/)
 
 ## NPM
 
@@ -45,6 +46,9 @@ for all stopped container (not just dangling images)
 [helm intro](https://docs.bitnami.com/kubernetes/how-to/create-your-first-helm-chart/)  
 **helm create chart**
 **helm install --name ping-pong .\ping-pong-chart\ **
+**helm upgrade ping-pong .\ping-pong-canary-chart\ **
+**helm history ping-pong **
+**helm rollback ping-pong 1 **
 
 ### Gateway
 

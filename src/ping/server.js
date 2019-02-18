@@ -20,7 +20,7 @@ const cors = require("cors");
 const timeout = require("await-timeout");
 
 const PORT = process.env.PORT || 80;
-const TARGET_URL = process.env.TARGET_URL || "http://pong-svc";
+const TARGET_URL = process.env.TARGET_URL || "http://pong-service";
 
 const app = express();
 
