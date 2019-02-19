@@ -33,6 +33,9 @@ app.get("/*", async (req, res, next) => {
   <h1>Echo</h1>
   <p>Params: ${JSON.stringify(req.params)}</p>
   <p>Query:  ${JSON.stringify(req.query)}</p>
+  <h3>Node Express</h3>
+  <p>Pod Language: Javascript (express)</p>
+  <p>Pod Version: 2</p>
   <div>`);
 });
 

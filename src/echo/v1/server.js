@@ -28,7 +28,11 @@ const app = express();
 app.use(cors());
 
 app.get("/*", async (req, res, next) => {
-  res.json({ echo: { params: req.params, query: req.query } });
+  res.json({
+    echo: { params: req.params, query: req.query },
+    Language: "JS",
+    Version: 1
+  });
 });
 
 app.listen(PORT, () => {

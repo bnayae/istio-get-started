@@ -44,11 +44,12 @@ for all stopped container (not just dangling images)
 ## HELM
 
 [helm intro](https://docs.bitnami.com/kubernetes/how-to/create-your-first-helm-chart/)  
-**helm create chart**
-**helm install --name ping-pong .\ping-pong-chart\ **
-**helm upgrade ping-pong .\ping-pong-canary-chart\ **
-**helm history ping-pong **
-**helm rollback ping-pong 1 **
+**helm create chart**  
+**helm install --name ping-pong .\ping-pong-chart\ **  
+**helm upgrade ping-pong .\ping-pong-canary-chart\ **  
+**helm history ping-pong **  
+**helm rollback ping-pong 1 **  
+**helm delete ping-pong --purge **
 
 ### Gateway
 

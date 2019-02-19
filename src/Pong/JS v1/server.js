@@ -38,8 +38,8 @@ app.get("/ready", async (req, res, next) => {
 app.get("/", async (req, res, next) => {
   let count = req.query.count;
   count -= 1;
-  let data = [`${"-".repeat(count)}|`];
-  if (count <= 0) {
+  let data = [`JS v1: ${"-".repeat(count)}|`];
+  if (count <= 1) {
     res.json(data);
   } else {
     try {
@@ -49,7 +49,8 @@ app.get("/", async (req, res, next) => {
       let json = await response.json();
       res.json(json.concat(data));
     } catch (ex) {
-      res.json(JSON.stringify(ex));
+      console.log(ex);
+      res.json(json.concat(["JS Error"]));
     }
   }
 });
