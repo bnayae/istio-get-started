@@ -24,12 +24,12 @@ spec:
   template:
     metadata:
       labels:
-        app: pong
+        app: pong.pod
         version: v1
     spec:
       containers:
       - name: pong-container
-        image: bnaya/pong:v1
+        image: bnaya/pong-js:v1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80

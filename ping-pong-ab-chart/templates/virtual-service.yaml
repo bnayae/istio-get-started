@@ -43,14 +43,14 @@ spec:
         host: echo-service
         port:
           number: 80
-        subset: version-1 # defined in the destination rule
-      weight: 90
+        subset: cs  # defined in the destination rule
+      weight: 50
     - destination:
         host: echo-service
         port:
           number: 80
-        subset: version-2 # defined in the destination rule
-      weight: 10
+        subset: js # defined in the destination rule
+      weight: 50
 
   - match:
     - uri:
@@ -63,30 +63,6 @@ spec:
         port:
           number: 80
         subset: version-2 # defined in the destination rule
-
-#    fault: # https://istio.io/docs/tasks/traffic-management/fault-injection/
-#      delay:
-#        percent: 50
-#        fixedDelay: 3s
-#      abort:
-#        percent: 20
-#        httpStatus: 404
-#    retries:
-#      attempts: 2
-#      perTryTimeout: 1s
-#  - match:
-#    - uri:
-#        exact: /echo/health
-#    - uri:
-#        exact: /echo/ready
-#    - uri:
-#        exact: /echo
-#    route:
-#    - destination:
-#        host: echo-service
-#        port:
-#          number: 80
-#    timeout: 10s
 ######################################################################################
 # ping
 ######################################################################################

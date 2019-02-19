@@ -13,26 +13,23 @@
 #   limitations under the License.
 
 ##################################################################################################
-# pong Pod
+# echo Pod
 ##################################################################################################
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: pong-v1-pod
+  name: echo-js-v1-pod
 spec:
-  replicas: 1
+  replicas: 0
   template:
     metadata:
       labels:
-        app: pong.pod
+        app: echo.pod
         version: v1
     spec:
       containers:
-      - name: pong-container
-        image: bnaya/pong-js:v1
+      - name: echo-container
+        image: bnaya/echo-js:v1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
-        env:
-        - name: TARGET_URL
-          value: "http://ping-service"

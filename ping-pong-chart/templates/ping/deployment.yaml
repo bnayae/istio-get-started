@@ -24,12 +24,12 @@ spec:
   template:
     metadata:
       labels:
-        app: ping
+        app: ping.pod
         version: v1
     spec:
       containers:
       - name: ping-container
-        image: bnaya/ping:v1
+        image: bnaya/ping-js:v1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80

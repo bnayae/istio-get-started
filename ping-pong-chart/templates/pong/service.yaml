@@ -20,10 +20,10 @@ kind: Service
 metadata:
   name: pong-service
   labels:
-    app: pong
+    app: pong.svc
 spec:
   ports:
   - port: 80
     name: http
   selector:
-    app: pong
+    app: pong.pod

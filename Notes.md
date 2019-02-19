@@ -10,24 +10,21 @@
 
 ## Dockerize (from project root folder)
 
-cd src/ping
-**docker image build -t bnaya/ping:v1 .**
-
-cd src/pong  
-**docker image build -t bnaya/pong:v1 .**
-
-cd src/echo/{version}  
-**docker image build -t bnaya/echo:v1 .**
-**docker image build -t bnaya/echo:v2 .**
+cd to the folder
+**docker image build -t bnaya/ping-js:v1 .**
+**docker image build -t bnaya/pong-js:v1 .**
+**docker image build -t bnaya/echo-js:v1 .**
+**docker image build -t bnaya/echo-js:v2 .**
+**docker image build -t bnaya/echo-cs:v1 .**
 
 run attached  
-**docker run -p 7777:80 bnaya/ping:v1**  
-**docker run -p 7777:80 bnaya/pong:v1**
-**docker run -p 7777:80 bnaya/echo:v1**
+**docker run -p 7777:80 bnaya/ping-js:v1**  
+**docker run -p 7777:80 bnaya/pong-js:v1**
+**docker run -p 7777:80 bnaya/echo-js:v1**
+**docker run -p 7777:80 bnaya/echo-cs:v1**
 
 run detached  
-**docker run -d -p 7777:80 bnaya/ping:v1**  
-**docker run -d -p 7777:80 bnaya/pong:v1**
+**docker run -d -p 7777:80 bnaya/ping-js:v1**
 
 validate  
 http://localhost:7777/health  
@@ -47,6 +44,7 @@ for all stopped container (not just dangling images)
 **helm create chart**  
 **helm install --name ping-pong .\ping-pong-chart\ **  
 **helm upgrade ping-pong .\ping-pong-canary-chart\ **  
+**helm upgrade ping-pong .\ping-pong-ab-chart\ **  
 **helm history ping-pong **  
 **helm rollback ping-pong 1 **  
 **helm delete ping-pong --purge **

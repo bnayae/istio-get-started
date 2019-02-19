@@ -18,7 +18,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: echo-v1-pod
+  name: echo-js-v1-pod
 spec:
   replicas: 1
   template:
@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
       - name: echo-container
-        image: bnaya/echo:v1
+        image: bnaya/echo-js:v1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
