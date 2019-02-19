@@ -28,7 +28,7 @@ spec:
         version: cs-v1
     spec:
       containers:
-      - name: echo-container
+      - name: echo-container-cs
         image: bnaya/echo-cs:v1
         imagePullPolicy: IfNotPresent
         ports:

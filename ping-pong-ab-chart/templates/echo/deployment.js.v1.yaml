@@ -25,10 +25,10 @@ spec:
     metadata:
       labels:
         app: echo.pod
-        version: v1
+        version: js-v1
     spec:
       containers:
-      - name: echo-container
+      - name: echo-container-js
         image: bnaya/echo-js:v1
         imagePullPolicy: IfNotPresent
         ports:

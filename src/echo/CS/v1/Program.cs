@@ -7,6 +7,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using System.Net;
 
 namespace cs_aspcore_echo_v1
 {
@@ -19,6 +21,14 @@ namespace cs_aspcore_echo_v1
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureKestrel(options =>
+                {
+                    options.Listen(IPAddress.Any, 80, listenOptions =>
+                    {
+                        listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
+                        //listenOptions.UseHttps("testcert.pfx", "testPassword")
+                    });
+                })
                 .UseStartup<Startup>();
     }
 }

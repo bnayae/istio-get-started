@@ -35,7 +35,7 @@ namespace cs_aspcore_echo_v1
   <p>Query:  {context.Request.Path}</p>
   <h3>C# ASP.NET Core</h3>
   <p>Pod Language: C# (ASP.NET)</p>
-  <p>Pod Version: 2</p>
+  <p>Pod Version: 1</p>
   <div>");
             });
         }

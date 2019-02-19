@@ -28,7 +28,7 @@ spec:
         version: js-v2
     spec:
       containers:
-      - name: echo-container
+      - name: echo-container-js
         image: bnaya/echo-js:v2
         imagePullPolicy: IfNotPresent
         ports:
