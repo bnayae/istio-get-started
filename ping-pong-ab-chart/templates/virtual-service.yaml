@@ -54,7 +54,7 @@ spec:
 
   - match:
     - uri:
-        prefix: /api/v2/echo
+        prefix: /api/js/echo
     rewrite:
       uri: /
     route: 
@@ -62,7 +62,19 @@ spec:
         host: echo-service
         port:
           number: 80
-        subset: version-2 # defined in the destination rule
+        subset: js # defined in the destination rule
+
+  - match:
+    - uri:
+        prefix: /api/cs/echo
+    rewrite:
+      uri: /
+    route: 
+    - destination: 
+        host: echo-service
+        port:
+          number: 80
+        subset: cs # defined in the destination rule
 ######################################################################################
 # ping
 ######################################################################################
