@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using System.Net;
 
-namespace cs_aspcore_echo_v1
+namespace Bnaya.Samples
 {
     public class Program
     {

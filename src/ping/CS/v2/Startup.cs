@@ -3,18 +3,19 @@ using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace cs_aspcore_echo_v1
+namespace Bnaya.Samples
 {
     public class Startup : IDisposable
     {
         private readonly HttpClient _http;
-        private string TARGET_URL = Environment.GetEnvironmentVariable("TARGET_URL") ?? "http://bnaya-pong-service";
+        private string TARGET_URL = Environment.GetEnvironmentVariable("TARGET_URL") ?? "http://localhost/api/v1/pong";
 
         public Startup()
         {
@@ -62,10 +63,12 @@ namespace cs_aspcore_echo_v1
                 if (!int.TryParse(countStr, out int count))
                     count = 0;
 
-                string data = $@"""CS|{new string('-', count)}""";
+                string newElement = $@"CS|{new string('-', count)}";
+                var data = new JArray(newElement);
                 if (count <= 1)
                 {
-                    await context.Response.WriteAsync(data).ConfigureAwait(false);
+                    string payload = JsonConvert.SerializeObject(data);
+                    await context.Response.WriteAsync(payload).ConfigureAwait(false);
                     return;
                 }
 
@@ -75,18 +78,24 @@ namespace cs_aspcore_echo_v1
                     var res = await _http.GetAsync($"{TARGET_URL}?count={count}").ConfigureAwait(false);
                     if (!res.IsSuccessStatusCode)
                     {
-                        await context.Response.WriteAsync(@"[""X""]").ConfigureAwait(false);
-                        return;
+                        data.Add("X");
+                        string payload = JsonConvert.SerializeObject(data);
+                        await context.Response.WriteAsync(payload).ConfigureAwait(false);
                     }
-
-                    var arr = await res.Content.ReadAsAsync<JArray>();
-                    arr.Add(data);
-                    await context.Response.WriteAsync(data).ConfigureAwait(false);
+                    else
+                    {
+                        var result = await res.Content.ReadAsAsync<JArray>();
+                        result.Merge(data);
+                        string payload = JsonConvert.SerializeObject(result);
+                        await context.Response.WriteAsync(payload).ConfigureAwait(false);
+                    }
                 }
                 catch (Exception)
                 {
 
-                    await context.Response.WriteAsync($"X:{data}").ConfigureAwait(false);
+                    data.Add("X!");
+                    string payload = JsonConvert.SerializeObject(data);
+                    await context.Response.WriteAsync(payload).ConfigureAwait(false);
                 }
             });
         }

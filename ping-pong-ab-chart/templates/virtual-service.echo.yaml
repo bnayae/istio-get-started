@@ -41,14 +41,14 @@ spec:
         host: bnaya-echo-service
         port:
           number: 80
-#        subset: cs  # defined in the destination rule
-#      weight: 50
-#    - destination:
-#        host: bnaya-echo-service
-#        port:
-#          number: 80
-#        subset: js # defined in the destination rule
-#      weight: 50
+        subset: cs  # defined in the destination rule
+      weight: 50
+    - destination:
+        host: bnaya-echo-service
+        port:
+          number: 80
+        subset: js # defined in the destination rule
+      weight: 50
 
   - match:
     - uri:

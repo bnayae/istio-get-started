@@ -40,12 +40,12 @@ spec:
         host: bnaya-ping-service
         port:
           number: 80
-#        subset: ping-js # defined in the destination rule
-#      weight: 30
-#    - destination:
-#        host: bnaya-ping-service
-#        port:
-#          number: 80
-#        subset: ping-cs # defined in the destination rule
-#      weight: 70
-    timeout: 2s
+        subset: ping-js # defined in the destination rule
+      weight: 30
+    - destination:
+        host: bnaya-ping-service
+        port:
+          number: 80
+        subset: ping-cs 
+      weight: 70
+    timeout: 12s
