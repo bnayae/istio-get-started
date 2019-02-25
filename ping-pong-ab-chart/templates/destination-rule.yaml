@@ -32,7 +32,7 @@ spec:
   subsets:
   - name: cs
     labels:
-      version: cs-v1
+      version: cs.v1
   - name: js
     labels:
-      version: js-v2
+      version: js.v2

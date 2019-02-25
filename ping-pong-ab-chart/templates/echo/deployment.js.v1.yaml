@@ -15,21 +15,21 @@
 ##################################################################################################
 # echo Pod
 ##################################################################################################
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  name: echo-js-v1-pod
-spec:
-  replicas: 0
-  template:
-    metadata:
-      labels:
-        app: echo.pod
-        version: js-v1
-    spec:
-      containers:
-      - name: echo-container-js
-        image: bnaya/echo-js:v1
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 80
+#apiVersion: extensions/v1beta1
+#kind: Deployment
+#metadata:
+#  name: echo-js.v1-pod
+#spec:
+#  replicas: 0
+#  template:
+#    metadata:
+#      labels:
+#        app: echo.pod
+#        version: js.v1
+#    spec:
+#      containers:
+#      - name: echo-container-js
+#        image: bnaya/echo-js:v1
+#        imagePullPolicy: IfNotPresent
+#        ports:
+#        - containerPort: 80

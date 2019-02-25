@@ -18,14 +18,14 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: echo-js-v2-pod
+  name: echo-js.v2-pod
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         app: echo.pod
-        version: js-v2
+        version: js.v2
     spec:
       containers:
       - name: echo-container-js
