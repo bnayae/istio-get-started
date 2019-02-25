@@ -28,7 +28,7 @@ metadata:
   name: ping-pong-destination-rule
 spec:
   # host = service name
-  host: echo-service  
+  host: bnaya-echo-service  
   subsets:
   - name: version-1
     labels:

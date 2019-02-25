@@ -40,13 +40,13 @@ spec:
       uri: /
     route:
     - destination: # Destination indicates the network addressable service to which the request/connection will be sent after processing a routing rule.
-        host: echo-service
+        host: bnaya-echo-service
         port:
           number: 80
         subset: version-1 # defined in the destination rule
       weight: 90
     - destination:
-        host: echo-service
+        host: bnaya-echo-service
         port:
           number: 80
         subset: version-2 # defined in the destination rule
@@ -59,7 +59,7 @@ spec:
       uri: /
     route: 
     - destination: 
-        host: echo-service
+        host: bnaya-echo-service
         port:
           number: 80
         subset: version-2 # defined in the destination rule
@@ -83,7 +83,7 @@ spec:
 #        exact: /echo
 #    route:
 #    - destination:
-#        host: echo-service
+#        host: bnaya-echo-service
 #        port:
 #          number: 80
 #    timeout: 10s
@@ -97,7 +97,7 @@ spec:
       uri: /health
     route:
     - destination:
-        host: ping-service
+        host: bnaya-ping-service
         port:
           number: 80
           
@@ -108,7 +108,7 @@ spec:
       uri: /ready
     route:
     - destination:
-        host: ping-service
+        host: bnaya-ping-service
         port:
           number: 80
 
@@ -119,7 +119,7 @@ spec:
       uri: /
     route:
     - destination:
-        host: ping-service
+        host: bnaya-ping-service
         port:
           number: 80
     timeout: 2s
@@ -133,7 +133,7 @@ spec:
       uri: /health
     route:
     - destination:
-        host: pong-service
+        host: bnaya-pong-service
         port:
           number: 80
 
@@ -144,7 +144,7 @@ spec:
       uri: /ready
     route:
     - destination:
-        host: pong-service
+        host: bnaya-pong-service
         port:
           number: 80
 
@@ -155,6 +155,6 @@ spec:
       uri: /
     route:
     - destination:
-        host: pong-service
+        host: bnaya-pong-service
         port:
           number: 80

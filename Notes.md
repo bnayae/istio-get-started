@@ -16,6 +16,7 @@ cd to the folder
 **docker image build -t bnaya/echo-js:v1 .**
 **docker image build -t bnaya/echo-js:v2 .**
 **docker image build -t bnaya/echo-cs:v1 .**
+**docker image build -t bnaya/ping-cs:v2 .**
 
 run attached  
 **docker run -p 7777:80 bnaya/ping-js:v1**  
@@ -48,6 +49,11 @@ for all stopped container (not just dangling images)
 **helm history ping-pong **  
 **helm rollback ping-pong 1 **  
 **helm delete ping-pong --purge **
+
+### Diagnostic
+
+check the status  
+**istioctl authn tls-check **
 
 ### Gateway
 

@@ -18,6 +18,7 @@
 #
 # https://istio.io/docs/reference/config/istio.networking.v1alpha3/#DestinationRule
 # https://kublr.com/blog/hands-on-canary-deployments-with-istio-and-kubernetes/
+# https://istio.io/help/ops/traffic-management/deploy-guidelines/
 #
 # kubectl get destinationrules -o yaml
 ##################################################################################################
@@ -25,14 +26,17 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: ping-pong-destination-rule
+  name: bnaya-echo-destination-rule
 spec:
-  # host = service name
-  host: echo-service  
+  host: bnaya-echo-service 
+#  trafficPolicy:
+#    loadBalancer:
+#      simple: LEAST_CONN # ROUND_ROBIN, LEAST_CONN
   subsets:
-  - name: cs
+  - name: cs # will be refer at virtual-service's subset
     labels:
-      version: cs.v1
+      version: cs.v1 # a tag at the deployment
   - name: js
     labels:
       version: js.v2
+

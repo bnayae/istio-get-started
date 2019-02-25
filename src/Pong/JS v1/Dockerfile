@@ -16,12 +16,12 @@ RUN npm install
 # RUN npm install --only=production
 
 # Bundle app source
-# COPY ping-service.js .
+# COPY bnaya-ping-service.js .
 COPY ./server.js .
 
 EXPOSE 80
 
 # CMD [ "npm", "start" ]
-# ENTRYPOINT ["node", "ping-service.js"]
+# ENTRYPOINT ["node", "bnaya-ping-service.js"]
 CMD node server.js
 

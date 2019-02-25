@@ -40,7 +40,7 @@ spec:
       uri: /
     route:
     - destination: # Destination indicates the network addressable service to which the request/connection will be sent after processing a routing rule.
-        host: echo-service
+        host: bnaya-echo-service
         port:
           number: 80
 
@@ -67,7 +67,7 @@ spec:
       uri: /health
     route:
     - destination:
-        host: ping-service
+        host: bnaya-ping-service
         port:
           number: 80
 
@@ -78,7 +78,7 @@ spec:
       uri: /ready
     route:
     - destination:
-        host: ping-service
+        host: bnaya-ping-service
         port:
           number: 80
 
@@ -89,7 +89,7 @@ spec:
       uri: /
     route:
     - destination:
-        host: ping-service
+        host: bnaya-ping-service
         port:
           number: 80
 ######################################################################################
@@ -102,7 +102,7 @@ spec:
       uri: /health
     route:
     - destination:
-        host: pong-service
+        host: bnaya-pong-service
         port:
           number: 80
 
@@ -113,7 +113,7 @@ spec:
       uri: /ready
     route:
     - destination:
-        host: pong-service
+        host: bnaya-pong-service
         port:
           number: 80
 
@@ -124,7 +124,7 @@ spec:
       uri: /
     route:
     - destination:
-        host: pong-service
+        host: bnaya-pong-service
         port:
           number: 80
 

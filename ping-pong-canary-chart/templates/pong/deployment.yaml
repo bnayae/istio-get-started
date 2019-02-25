@@ -35,4 +35,4 @@ spec:
         - containerPort: 80
         env:
         - name: TARGET_URL
-          value: "http://ping-service"
+          value: "http://bnaya-ping-service"

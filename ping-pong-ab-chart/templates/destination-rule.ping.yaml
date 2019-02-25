@@ -13,26 +13,29 @@
 #   limitations under the License.
 
 ##################################################################################################
-# pong Pod
+# destination-rule:
+# pod routing.
+#
+# https://istio.io/docs/reference/config/istio.networking.v1alpha3/#DestinationRule
+# https://kublr.com/blog/hands-on-canary-deployments-with-istio-and-kubernetes/
+# https://istio.io/help/ops/traffic-management/deploy-guidelines/
+#
+# kubectl get destinationrules -o yaml
 ##################################################################################################
-apiVersion: extensions/v1beta1
-kind: Deployment
+
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
 metadata:
-  name: pong-v1-pod
+  name: bnaya-ping-destination-rule
 spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: pong.pod
-        version: v1
-    spec:
-      containers:
-      - name: pong-container
-        image: bnaya/pong-js:v1
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 80
-        env:
-        - name: TARGET_URL
-          value: "http://bnaya-ping-service"
+  host: bnaya-ping-service  
+#  trafficPolicy:
+#    loadBalancer:
+#      simple: LEAST_CONN # ROUND_ROBIN, LEAST_CONN
+  subsets:
+  - name: ping-cs
+    labels:
+      version: cs.v2
+  - name: ping-js
+    labels:
+      version: js.v2

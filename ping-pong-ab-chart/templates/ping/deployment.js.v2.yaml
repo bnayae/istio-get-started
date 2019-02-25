@@ -18,14 +18,14 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: ping-v1-pod
+  name: ping-js-v2-pod
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         app: ping.pod
-        version: v1
+        version: js.v2
     spec:
       containers:
       - name: ping-container
@@ -35,4 +35,4 @@ spec:
         - containerPort: 80
         env:
         - name: TARGET_URL
-          value: "http://pong-service"
+          value: "http://bnaya-pong-service"
