@@ -13,26 +13,17 @@
 #   limitations under the License.
 
 ##################################################################################################
-# pong Pod
+# pong service
 ##################################################################################################
-apiVersion: extensions/v1beta1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: pong-v1-pod
+  name: bnaya-pong-service
+  labels:
+    app: pong.svc
 spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: pong.pod
-        version: v1
-    spec:
-      containers:
-      - name: pong-container
-        image: bnaya/pong-js:v1
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 80
-        env:
-        - name: GO_SERVER_PORT
-          value: 80
+  ports:
+  - port: 80
+    name: http
+  selector:
+    app: pong.pod

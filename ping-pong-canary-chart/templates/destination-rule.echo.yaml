@@ -13,26 +13,26 @@
 #   limitations under the License.
 
 ##################################################################################################
-# pong Pod
+# destination-rule:
+# pod routing.
+#
+# https://istio.io/docs/reference/config/istio.networking.v1alpha3/#DestinationRule
+# https://kublr.com/blog/hands-on-canary-deployments-with-istio-and-kubernetes/
+#
+# kubectl get destinationrules -o yaml
 ##################################################################################################
-apiVersion: extensions/v1beta1
-kind: Deployment
+
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
 metadata:
-  name: pong-v1-pod
+  name: destination-rule-echo
 spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: pong.pod
-        version: v1
-    spec:
-      containers:
-      - name: pong-container
-        image: bnaya/pong-js:v1
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 80
-        env:
-        - name: GO_SERVER_PORT
-          value: 80
+  # host = service name
+  host: bnaya-echo-service  
+  subsets:
+  - name: version-1
+    labels:
+      version: v1
+  - name: version-2
+    labels:
+      version: v2

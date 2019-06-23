@@ -13,26 +13,33 @@
 #   limitations under the License.
 
 ##################################################################################################
-# pong Pod
+# destination-rule:
+# pod routing.
+#
+# https://istio.io/docs/reference/config/istio.networking.v1alpha3/#DestinationRule
+# https://kublr.com/blog/hands-on-canary-deployments-with-istio-and-kubernetes/
+# https://istio.io/help/ops/traffic-management/deploy-guidelines/
+#
+# kubectl get destinationrules -o yaml
 ##################################################################################################
-apiVersion: extensions/v1beta1
-kind: Deployment
+
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
 metadata:
-  name: pong-v1-pod
+  name: bnaya-echo-destination-rule
 spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: pong.pod
-        version: v1
-    spec:
-      containers:
-      - name: pong-container
-        image: bnaya/pong-js:v1
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 80
-        env:
-        - name: GO_SERVER_PORT
-          value: 80
+  host: bnaya-echo-service 
+#  trafficPolicy:
+#    loadBalancer:
+#      simple: LEAST_CONN # ROUND_ROBIN, LEAST_CONN
+  subsets:
+  - name: cs # will be refer at virtual-service's subset
+    labels:
+      version: cs.v1 # a tag at the deployment
+  - name: js
+    labels:
+      version: js.v2
+  - name: go
+    labels:
+      version: go.v2
+

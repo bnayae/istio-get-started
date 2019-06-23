@@ -18,7 +18,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: echo-js.v1-pod
+  name: echo-js-v1-pod
 spec:
   replicas: 1
   template:

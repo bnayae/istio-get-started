@@ -3,8 +3,8 @@
 
 
 apiVersion: v1 # The chart API version, always "v1" (required)
-# appVersion: "1.0" # The version of the app (optional). 
-version: 0.1.0 # A semantic version (required) // https://semver.org/
+# appVersion: "1.0" # The version of the app that this contains - not part of the operative version, just an option of arbitary versioning format (optional). 
+version: 0.1.3 # A semantic version (required) // https://semver.org/
 description: Ping/Pong Helm chart for Kubernetes
 name: ping-pong-chart # The name should match the folder (required)
 keywords: # A list of keywords about this project (optional)

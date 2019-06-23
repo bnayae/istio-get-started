@@ -1,0 +1,37 @@
+Chart [{{ .Release.Name }}:{{ .Chart.Version }}] on namespace [{{ .Release.Namespace }}]
+{{- if .Release.IsUpgrade }}
+  This is an update / rollback
+{{- end }}
+
+Read More: 
+Istio Routing Basic:   https://medium.com/google-cloud/istio-routing-basics-14feab3c040e 
+Deployment Guidelines: https://istio.io/help/ops/traffic-management/deploy-guidelines/
+docs:                  https://docs.helm.sh/developing_charts/)  
+Helm: tips & Tricks:   https://github.com/helm/helm/blob/master/docs/charts_tips_and_tricks.md
+canary-deployments:    https://kublr.com/blog/hands-on-canary-deployments-with-istio-and-kubernetes/
+
+
+Maintainers:
+{{ .Chart.Maintainers }}
+
+Istio Ingress Geteway:
+Virtual Services: istioctl get virtualservices
+Destination Rules: istioctl get destinationrules
+Destination Rules: kubectl get destinationrules -o yaml
+
+kubectl get svc istio-ingressgateway -n istio-system
+Ingress Host: kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
+Ingress Port: kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].port}'
+
+Envoy Health: https://istio.io/help/ops/traffic-management/proxy-cmd/
+istioctl proxy-status
+
+Diagnostic:
+// check the status
+istioctl authn tls-check
+
+Check it:
+http://localhost/api/v1/echo/abc?x=1&y=2
+http://localhost/api/v1/ping/health
+http://localhost/api/v1/ping?count=5
+http://localhost/api/v1/pong?count=5
